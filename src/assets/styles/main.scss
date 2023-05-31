@@ -1,10 +1,9 @@
 @use './partials/reset.scss';
-@use './partials/variables.scss';
+@use './partials/variables.scss' as *;
 @import "../../../node_modules/bootstrap/scss/bootstrap.scss";
 
 body {
-    background-color: #022d30;
-    color: #a2ce4c;
+    background-color: $bg-jumbo;
 }
 
 .ms-card {
