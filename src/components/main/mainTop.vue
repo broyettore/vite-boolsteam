@@ -16,7 +16,7 @@ export default {
     <!-- Main Top -->
     <section class="container ms-container pb-5">
         <div class="text-center">
-            <div class="pt-5 pb-3 ms_bg">
+            <div class="pt-5 pb-2 ms_bg">
                 <div>
                     <!-- Search bar -->
                     <div class="px-3">

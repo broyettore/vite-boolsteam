@@ -26,7 +26,64 @@ export default {
         const newPrice = (price * discount) / 100;
         const finalPrice = price - newPrice;
         return finalPrice.toFixed(2);
-    }
+    },
+
+
+    gameDate(date) {
+
+            const releaseDate = new Date(date);
+            const yyyy = releaseDate.getFullYear();
+            let mm = releaseDate.getMonth() + 1; // starts from 0 , so +1 necessary
+            let dd = releaseDate.getDate();
+
+            if (dd < 10) dd = '0' + dd;
+            if (mm < 10) mm = '0' + mm;
+
+            switch (mm) {
+
+                case "01":
+                    return dd + " " + "JAN" + " " + yyyy;
+                    break;
+                case "02":
+                    return dd + " " + "FEB" + " " + yyyy;
+                    break;
+                case "03":
+                    return dd + " " + "MAR" + " " + yyyy;
+                    break;
+                case "04":
+                    return dd + " " + "APR" + " " + yyyy;
+                    break;
+                case "05":
+                    return dd + " " + "MAY" + " " + yyyy;
+                    break;
+                case "06":
+                    return dd + " " + "JUN" + " " + yyyy;
+                    break;
+                case "07":
+                    return dd + " " + "JUL" + " " + yyyy;
+                    break;
+                case "08":
+                    return dd + " " + "AUG" + " " + yyyy;
+                    break;
+                case "09":
+                    return dd + " " + "SET" + " " + yyyy;
+                    break;
+                case 10:
+                    return dd + " " + "OCT" + " " + yyyy;
+                    break;
+                case 11:
+                    return dd + " " + "NOV" + " " + yyyy;
+                    break;
+                case 12:
+                    return dd + " " + "DEC" + " " + yyyy;
+                    break;
+        
+            };
+
+            const formattedDate = dd + " " + mm + " " + yyyy;
+
+            return formattedDate;
+        },
   },
 
   created() {
@@ -40,20 +97,16 @@ export default {
     <div class="games-list">
         <div class="game d-flex" v-for="game in games">
             <div class="left">
-                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/2369390/header.jpg?t=1684591369" alt="game-controller">
+                <img :src="this.store.storage + game.image" alt="game-controller">
             </div>
             <div class="right d-flex">
                 <div class="info ps-4 pt-2">
                     <h4 class="mb-2">{{ game.title }}</h4>
                     <div class="tags mb-2">
-                        <span class="badge bg-secondary ms-badge me-1">Shooting</span>
-                        <span class="badge bg-secondary ms-badge me-1">Multiplayer</span>
-                        <span class="badge bg-secondary ms-badge me-1">Competition</span>
-                        <span class="badge bg-secondary ms-badge me-1">Action</span>
-                        <span class="badge bg-secondary ms-badge me-1">First person</span>
+                        <span class="badge bg-secondary ms-badge me-1" v-for="genre in game.genres">{{ genre.title }}</span>
                     </div>
                     <div class="extra d-flex">
-                        <span class="me-3">{{ game.release }}</span>
+                        <span class="me-3">{{ gameDate(game.release) }}</span>
                         <div class="platform">
                             <font-awesome-icon icon="fa-brands fa-windows"  class="fs-5 me-2"/>
                             <font-awesome-icon icon="fa-brands fa-apple" class="fs-5 me-2" />
@@ -72,7 +125,7 @@ export default {
                         </div>
                     </div>
                     <div v-else="game.price === 0">
-                        <span class="ms-badge  d-flex justify-content-center align-items-center fs-4">Free To Play</span>
+                        <span class="ms-badge  d-flex justify-content-center align-items-center fs-5 py-3">Free To Play</span>
                     </div>
                 </div>
             </div>
@@ -97,6 +150,8 @@ export default {
             img {
                 height: 100%;
                 width: 100%;
+                object-fit: cover;
+                object-position: 0% 10%;
             }
         }
 
@@ -135,12 +190,11 @@ export default {
                                 position: absolute;
                                 right: 0;
                                 top: 50%;
-                            }
-                            .cross::before {
                                 border-bottom: 2px solid $bg-main-bottom;
                                 -webkit-transform: skewY(-10deg);
                                 transform: skewY(-10deg);
                             }
+
                     .ms-badge {
                         padding: 2px 10px;
                         

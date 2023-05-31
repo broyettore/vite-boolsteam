@@ -1,10 +1,11 @@
 <script>
 import cardBottom from './cardBottom.vue';
+import store from '../../store';
 
 export default {
   components: {
     cardBottom,
-  }
+  },
 }
 </script>
 

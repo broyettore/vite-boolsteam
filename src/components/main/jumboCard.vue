@@ -42,7 +42,7 @@ export default {
         <div class="text-start text-light mt-5 mb-1 fs-5">OFFERTE SPECIALI</div>
         <div class="d-flex  gap-3">
             <div class="d-flex flex-column" v-for="game in games">
-                <img src="https://image.api.playstation.com/vulcan/ap/rnd/202108/1607/tqctMl6aS3C0tiI1mEMD36or.jpg" alt="">
+                <img :src="this.store.storage + game.image" :alt="game.title">
                 <div class="text-start d-flex">
                     <span class="ms_discount fs-3 fw-semibold">-{{ game.discount }}%</span>
                     <span class="ms_price d-flex flex-column">
@@ -59,7 +59,8 @@ export default {
 @use '../../assets/styles/partials/variables.scss' as *;
 
 img {
-    width: 370px;
+    width: 380px;
+    height: 400px;
 }
 .ms_discount{
     background-color: $discount-bg;

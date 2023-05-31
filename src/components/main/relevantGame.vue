@@ -46,7 +46,7 @@ export default {
             <div class="position-absolute bottom-0 end-0 d-flex">
                 <span class="ms_discount fs-3 fw-semibold">-{{ games.discount }}%</span>
                 <span class="ms_price d-flex flex-column">
-                    <span class="ms_text_old_price">{{ games.price }}</span>
+                    <span class="ms_text_old_price cross">{{ games.price }}</span>
                     <span class="ms_text_price">{{ showDiscount(games.price, games.discount) }}€</span>
                 </span>
             </div>
@@ -105,6 +105,23 @@ li {
     background-color: rgba(240, 248, 255, 30%);
     border-radius: 5px;
     padding: 1px 8px;
+}
+
+.cross {
+    position: relative;
+    display: inline-block;
+}
+.cross::before {
+    content: '';
+    width: 100%;
+    position: absolute;
+    right: 0;
+    top: 50%;
+}
+.cross::before {
+    border-bottom: 2px solid $bg-main-bottom;
+    -webkit-transform: skewY(-10deg);
+    transform: skewY(-10deg);
 }
 </style>
 

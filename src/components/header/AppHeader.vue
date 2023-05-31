@@ -24,7 +24,7 @@
             
             <div id="header_link" class="d-flex gap-2 me-3">
                 <div>
-                    <span class="bg-success p-2"><font-awesome-icon icon="fa-solid fa-download" /> Installa Steam</span>
+                    <span class="load-bg p-2"><font-awesome-icon icon="fa-solid fa-download" /> Installa Steam</span>
                 </div>
                 <div><span>Accedi</span></div>
                 <div><span>| Lingua <font-awesome-icon icon="fa-solid fa-caret-down"/></span></div>
@@ -34,9 +34,11 @@
 </template>
 
 <style lang="scss" scoped>
+@use '../../assets/styles/partials/variables.scss' as *;
+
     section{
-        background-color: #171a21;
-        color: #acb2b8;
+        background-color: $bg-header;
+        color: $text-alt;
 
         #steam_icon{
             height: 1.875rem;
@@ -49,7 +51,12 @@
             font-weight: 600;
         }
         li, #header_link {
-            cursor:pointer
+            cursor: pointer
         }
+    }
+
+    .load-bg {
+        background-color: #5b7f09;
+        color: $text-color;
     }
 </style>

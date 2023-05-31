@@ -7,7 +7,8 @@ const store = reactive({
         games: "/games",
         relevant: "/relevant",
         top3: "/top3",
-    }
+    },
+    storage: "http://127.0.0.1:8000/storage/"
 })
 
 export default store;

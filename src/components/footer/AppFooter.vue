@@ -9,7 +9,7 @@
         <div class="container w-50 pt-5 pb-2">
             <div class="border-top border-bottom">
                 <div class="d-flex justify-content-between mt-3">
-                    <div id="valve" class="d-flex text-uppercase px-2">
+                    <div id="valve" class="mb-1 d-flex text-uppercase px-2 align-items-center">
                         <h3 class="fw-bold">Valv</h3>
                         <h4 class="fw-bold ">e</h4>
                     </div>
@@ -39,17 +39,18 @@
 </template>
 
 <style lang="scss" scoped>
+@use '../../assets/styles/partials/variables.scss' as *;
+
     section{
-        background-color: #171a21;
-        color: #acb2b8;
+        background-color: $bg-footer;
+        color: $text-alt;
         a{
             text-decoration: none;
-            color: #fff;
+            color: $text-color;
         }
         #valve{
             background-color: #969caa;
             color: #000;
-            height: 1.875rem;
         }
         #footer_p{
             font-size: .8125rem;
