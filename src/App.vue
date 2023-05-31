@@ -4,6 +4,7 @@ import AppMain from './components/main/AppMain.vue';
 import AppFooter from './components/footer/AppFooter.vue';
 
 export default {
+  name: 'App',
   components: {
     AppHeader,
     AppFooter,
@@ -13,12 +14,10 @@ export default {
 </script>
 
 <template>
-  <AppHeader />
+  <AppHeader/>
   <AppMain />
   <AppFooter />
 </template>
 
 <style lang="scss" scoped>
-
-
 </style>
