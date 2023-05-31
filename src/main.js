@@ -3,6 +3,7 @@ import "./assets/styles/main.scss"
 import App from './App.vue'
 import * as bootstrap from 'bootstrap'
 /* import { router } from './router'; */
+
 /* /* import the fontawesome core / */
 import { library } from '@fortawesome/fontawesome-svg-core'
 
