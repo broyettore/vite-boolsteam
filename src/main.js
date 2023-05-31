@@ -24,4 +24,5 @@ import { faStar } from '@fortawesome/free-solid-svg-icons'
 
 library.add(faStar, faUserSecret, winIcon, apple, steam, faDownload, faCaretDown, faSquareFacebook, faSquareTumblr, faSteamSymbol, faMagnifyingGlass)
 
+
 createApp(App).component('font-awesome-icon', FontAwesomeIcon).mount('#app')
