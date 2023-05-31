@@ -19,3 +19,4 @@ import { faSteam as steam } from '@fortawesome/free-brands-svg-icons'
 library.add(faUserSecret, winIcon, apple, steam)
 
 createApp(App).component('font-awesome-icon', FontAwesomeIcon).mount('#app')
+

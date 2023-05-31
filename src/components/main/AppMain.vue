@@ -1,19 +1,20 @@
 <script>
 import mainTop from './mainTop.vue';
 import mainBottom from './mainBottom.vue';
-
 export default {
-  components: {
-    mainTop,
-    mainBottom
-  }
+    name: 'AppMain',
+    components: {
+        mainTop,
+        mainBottom
+    }
 }
-
 </script>
 
 <template>
-    <mainTop />
-    <mainBottom />
+    <section>
+        <mainTop></mainTop>
+        <mainBottom />
+    </section>
 </template>
 
 <style lang="scss" scoped>

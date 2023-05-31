@@ -1,8 +1,8 @@
 @use './partials/reset.scss';
-@use './partials/variables.scss';
+@use './partials/variables.scss' as *;
 @import "../../../node_modules/bootstrap/scss/bootstrap.scss";
 
 body {
-    background-color: black;
+    background-color: $bg-jumbo;
     color: white;
 }
