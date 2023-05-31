@@ -1,6 +1,38 @@
 <script>
+import store from '../../store';
+import axios from 'axios';
+
 export default {
-    name: 'jumboCard'
+    name: "jumboCard",
+    data() {
+    return {
+      store,
+      games: "",
+    }
+  },
+  methods: {
+    getData() {
+
+      axios.get(this.store.apiBaseUrl + this.store.apiUrls.top3)
+      .then((response) => {
+        console.log(response.data.results);
+        this.games = response.data.results;
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    },
+    showDiscount(price, discount) {
+        const newPrice = (price * discount) / 100;
+        const finalPrice = price - newPrice;
+        return finalPrice.toFixed(2);
+    }
+  },
+
+  created() {
+    this.getData()
+    this.showDiscount()
+  }
 }
 </script>
 
@@ -9,37 +41,16 @@ export default {
         <!-- Cards -->
         <div class="text-start text-light mt-5 mb-1 fs-5">OFFERTE SPECIALI</div>
         <div class="d-flex  gap-3">
-            <div class="d-flex flex-column">
-                <img src="../../assets/images/cod.jpg" alt="">
+            <div class="d-flex flex-column" v-for="game in games">
+                <img src="https://image.api.playstation.com/vulcan/ap/rnd/202108/1607/tqctMl6aS3C0tiI1mEMD36or.jpg" alt="">
                 <div class="text-start d-flex">
-                    <span class="ms_discount fs-3 fw-semibold">-67%</span>
+                    <span class="ms_discount fs-3 fw-semibold">-{{ game.discount }}%</span>
                     <span class="ms_price d-flex flex-column">
-                        <span class="ms_text_old_price">59.99</span>
-                        <span class="ms_text_price">19.00</span>
+                        <span class="ms_text_old_price cross">{{ game.price }}€</span>
+                        <span class="ms_text_price">{{ showDiscount(game.price, game.discount) }}€</span>
                     </span>
                 </div>
             </div>
-            <div class="d-flex flex-column">
-                <img src="../../assets/images/cod.jpg" alt="">
-                <div class="text-start d-flex">
-                    <span class="ms_discount fs-3 fw-semibold">-67%</span>
-                    <span class="ms_price d-flex flex-column">
-                        <span class="ms_text_old_price">59.99</span>
-                        <span class="ms_text_price">19.00</span>
-                    </span>
-                </div>
-            </div>
-            <div class="d-flex flex-column">
-                <img src="../../assets/images/cod.jpg" alt="">
-                <div class="text-start d-flex">
-                    <span class="ms_discount fs-3 fw-semibold">-67%</span>
-                    <span class="ms_price d-flex flex-column">
-                        <span class="ms_text_old_price">59.99</span>
-                        <span class="ms_text_price">19.00</span>
-                    </span>
-                </div>
-            </div>
-            
         </div>
     </div>
 </template>
@@ -68,4 +79,21 @@ img {
     font-size: 17px;
     color: $discount-text;
 }
+
+.cross {
+        position: relative;
+        display: inline-block;
+    }
+    .cross::before {
+        content: '';
+        width: 100%;
+        position: absolute;
+        right: 0;
+        top: 50%;
+    }
+    .cross::before {
+        border-bottom: 2px solid $bg-main-bottom;
+        -webkit-transform: skewY(-10deg);
+        transform: skewY(-10deg);
+    }
 </style>
