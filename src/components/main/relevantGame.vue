@@ -1,6 +1,38 @@
 <script>
+import store from '../../store';
+import axios from 'axios';
+
 export default {
-    name: 'relevantGame'
+    name: "jumboCard",
+    data() {
+    return {
+      store,
+      games: "",
+    }
+  },
+  methods: {
+    getData() {
+
+      axios.get(this.store.apiBaseUrl + this.store.apiUrls.relevant)
+      .then((response) => {
+        console.log(response.data.results);
+        this.games = response.data.results;
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    },
+    showDiscount(price, discount) {
+        const newPrice = (price * discount) / 100;
+        const finalPrice = price - newPrice;
+        return finalPrice.toFixed(2);
+    }
+  },
+
+  created() {
+    this.getData()
+    this.showDiscount()
+  }
 }
 </script>
 
@@ -12,28 +44,18 @@ export default {
                 <font-awesome-icon class="fs-3 ms_star p-1 rounded" :icon="['fas', 'star']" />
             </div>
             <div class="position-absolute bottom-0 end-0 d-flex">
-                <span class="ms_discount fs-3 fw-semibold">-67%</span>
+                <span class="ms_discount fs-3 fw-semibold">-{{ games.discount }}%</span>
                 <span class="ms_price d-flex flex-column">
-                    <span class="ms_text_old_price">59.99</span>
-                    <span class="ms_text_price">19.00</span>
+                    <span class="ms_text_old_price">{{ games.price }}</span>
+                    <span class="ms_text_price">{{ showDiscount(games.price, games.discount) }}€</span>
                 </span>
             </div>
         </div>
         <div class="m-3 text-start text-light">
-            <h3 class="mb-2 fw-bolder">Call of duty: black ops III</h3>
-            <span>Data di rilascio: 6 nov 2015</span>
+            <h3 class="mb-2 fw-bolder">{{ games.title }}</h3>
+            <span>Data di rilascio: {{ games.release }}</span>
             <ul class="d-flex gap-1 flex-wrap list-unstyled mt-3">
-                <li>Multigiocatore</li>
-                <li>Sparatutto in prima persona</li>
-                <li>Zombi</li>
-                <li>Sparatutto</li>
-                <li>Azione</li>
-                <li>Prima persona</li>
-                <li>Sparatutto in prima persona</li>
-                <li>Zombi</li>
-                <li>Sparatutto</li>
-                <li>Azione</li>
-                <li>Prima persona</li>
+                <li v-for="genre in games.genres">{{ genre.title }}</li>
             </ul>
         </div>
     </div>
