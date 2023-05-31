@@ -6,7 +6,7 @@
 
 <template>
     <section>
-        <div class="container w-50 p-2">
+        <div class="container w-50 pt-5 pb-2">
             <div class="border-top border-bottom">
                 <div class="d-flex justify-content-between mt-3">
                     <div id="valve" class="d-flex text-uppercase px-2">

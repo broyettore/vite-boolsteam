@@ -8,7 +8,7 @@ export default {
     <div>
         <!-- Cards -->
         <div class="text-start text-light mt-5 mb-1 fs-5">OFFERTE SPECIALI</div>
-        <div class="d-flex justify-content-between">
+        <div class="d-flex  gap-3">
             <div class="d-flex flex-column">
                 <img src="../../assets/images/cod.jpg" alt="">
                 <div class="text-start d-flex">
@@ -48,7 +48,7 @@ export default {
 @use '../../assets/styles/partials/variables.scss' as *;
 
 img {
-    width: 400px;
+    width: 370px;
 }
 .ms_discount{
     background-color: $discount-bg;
