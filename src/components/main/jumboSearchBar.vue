@@ -15,8 +15,11 @@ export default {
                 <li><a class="text-decoration-none" href="#">Notizie</a></li>
                 <li><a class="text-decoration-none" href="#">Laboratori</a></li>
             </ul>
-            <div class="m-2">
-                <input type="text" placeholder="cerca">
+            <div class="d-flex align-items-center">
+                <div>
+                    <input type="text" placeholder="cerca">
+                </div>
+                <font-awesome-icon class="ms_glass p-2" icon="fa-solid fa-magnifying-glass" />
             </div>
         </nav>
     </div>
@@ -37,6 +40,11 @@ export default {
     }
 }
 
+.ms_glass {
+    background-color: #8aa9d1;
+    color: $jumbo-nav;
+}
+
 input {
     background-color: $bg-main-bottom;
     border: 0;
@@ -46,4 +54,5 @@ input {
 
 nav {
     box-shadow: 0px 0px 14px 2px rgba(0, 0, 0, 0.98);
-}</style>
+}
+</style>

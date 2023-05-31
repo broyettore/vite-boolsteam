@@ -8,6 +8,9 @@ export default {
     <div class="d-flex mt-4 ms_bg_blur">
         <div class="position-relative">
             <img class="m-2" src="../../assets/images/cod.jpg">
+            <div class="position-absolute top-0 end-0">
+                <font-awesome-icon class="fs-3 ms_star p-1 rounded" :icon="['fas', 'star']" />
+            </div>
             <div class="position-absolute bottom-0 end-0 d-flex">
                 <span class="ms_discount fs-3 fw-semibold">-67%</span>
                 <span class="ms_price d-flex flex-column">
@@ -44,6 +47,10 @@ div.ms_bg_blur {
     padding: 30px;
     backdrop-filter: blur(10px);
     box-shadow: 0px 0px 14px 2px rgba(0, 0, 0, 0.98);
+
+    .ms_star{
+        background-color: #1c3879;
+    }
 
 }
 
