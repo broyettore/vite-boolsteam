@@ -91,8 +91,6 @@ img {
         position: absolute;
         right: 0;
         top: 50%;
-    }
-    .cross::before {
         border-bottom: 2px solid $bg-main-bottom;
         -webkit-transform: skewY(-10deg);
         transform: skewY(-10deg);
