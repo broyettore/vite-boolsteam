@@ -1,20 +1,50 @@
 <script>
+import store from '../../store';
+import axios from 'axios';
 
 export default {
     name: "cardBottom",
+    data() {
+    return {
+      store,
+      games: "",
+    }
+  },
+  methods: {
+    getData() {
 
+      axios.get(this.store.apiBaseUrl + this.store.apiUrls.games)
+      .then((response) => {
+        console.log(response.data.results);
+        this.games = response.data.results;
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    },
+    showDiscount(price, discount) {
+        const newPrice = (price * discount) / 100;
+        const finalPrice = price - newPrice;
+        return finalPrice.toFixed(2);
+    }
+  },
+
+  created() {
+    this.getData()
+    this.showDiscount()
+  }
 }
 </script>
 
 <template>
     <div class="games-list">
-        <div class="game d-flex">
+        <div class="game d-flex" v-for="game in games">
             <div class="left">
-                <img src="../../assets/images/game-test.jpg" alt="game-controller">
+                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/2369390/header.jpg?t=1684591369" alt="game-controller">
             </div>
             <div class="right d-flex">
                 <div class="info ps-4 pt-2">
-                    <h4 class="mb-2">COUNTER-STRIKE: GLOBAL OFFENSIVE</h4>
+                    <h4 class="mb-2">{{ game.title }}</h4>
                     <div class="tags mb-2">
                         <span class="badge bg-secondary ms-badge me-1">Shooting</span>
                         <span class="badge bg-secondary ms-badge me-1">Multiplayer</span>
@@ -23,7 +53,7 @@ export default {
                         <span class="badge bg-secondary ms-badge me-1">First person</span>
                     </div>
                     <div class="extra d-flex">
-                        <span class="me-3">21 AGO 2012</span>
+                        <span class="me-3">{{ game.release }}</span>
                         <div class="platform">
                             <font-awesome-icon icon="fa-brands fa-windows"  class="fs-5 me-2"/>
                             <font-awesome-icon icon="fa-brands fa-apple" class="fs-5 me-2" />
@@ -32,181 +62,18 @@ export default {
                     </div>
                 </div>
                 <div class="price d-flex justify-content-end p-3 align-items-end">
-                    <span class="ms-badge  me-1 d-flex justify-content-center align-items-center">Free-to-Play</span>
-                </div>
-            </div>
-        </div>
-        <div class="game d-flex">
-            <div class="left">
-                <img src="../../assets/images/game-test.jpg" alt="game-controller">
-            </div>
-            <div class="right d-flex">
-                <div class="info ps-4 pt-2">
-                    <h4 class="mb-2">COUNTER-STRIKE: GLOBAL OFFENSIVE</h4>
-                    <div class="tags mb-2">
-                        <span class="badge bg-secondary ms-badge me-1">Shooting</span>
-                        <span class="badge bg-secondary ms-badge me-1">Multiplayer</span>
-                        <span class="badge bg-secondary ms-badge me-1">Competition</span>
-                        <span class="badge bg-secondary ms-badge me-1">Action</span>
-                        <span class="badge bg-secondary ms-badge me-1">First person</span>
-                    </div>
-                    <div class="extra d-flex">
-                        <span class="me-3">21 AGO 2012</span>
-                        <div class="platform">
-                            <font-awesome-icon icon="fa-brands fa-windows"  class="fs-5 me-2"/>
-                            <font-awesome-icon icon="fa-brands fa-apple" class="fs-5 me-2" />
-                            <font-awesome-icon icon="fa-brands fa-steam" class="fs-5 me-2"/>
+                    <div v-if="game.price > 0">
+                        <div class="discount d-flex">
+                            <span class="ms-badge  d-flex justify-content-center align-items-center fs-4">-{{ game.discount }}%</span>
+                            <span class="ms-badge text-end">
+                                <div><small class="cross">{{ game.price }}</small></div>
+                                <div>{{ showDiscount(game.price, game.discount) }}€</div>
+                            </span>
                         </div>
                     </div>
-                </div>
-                <div class="price d-flex justify-content-end p-3 align-items-end">
-                    <span class="ms-badge  me-1 d-flex justify-content-center align-items-center">Free-to-Play</span>
-                </div>
-            </div>
-        </div>
-        <div class="game d-flex">
-            <div class="left">
-                <img src="../../assets/images/game-test.jpg" alt="game-controller">
-            </div>
-            <div class="right d-flex">
-                <div class="info ps-4 pt-2">
-                    <h4 class="mb-2">COUNTER-STRIKE: GLOBAL OFFENSIVE</h4>
-                    <div class="tags mb-2">
-                        <span class="badge bg-secondary ms-badge me-1">Shooting</span>
-                        <span class="badge bg-secondary ms-badge me-1">Multiplayer</span>
-                        <span class="badge bg-secondary ms-badge me-1">Competition</span>
-                        <span class="badge bg-secondary ms-badge me-1">Action</span>
-                        <span class="badge bg-secondary ms-badge me-1">First person</span>
+                    <div v-else="game.price === 0">
+                        <span class="ms-badge  d-flex justify-content-center align-items-center fs-4">Free To Play</span>
                     </div>
-                    <div class="extra d-flex">
-                        <span class="me-3">21 AGO 2012</span>
-                        <div class="platform">
-                            <font-awesome-icon icon="fa-brands fa-windows"  class="fs-5 me-2"/>
-                            <font-awesome-icon icon="fa-brands fa-apple" class="fs-5 me-2" />
-                            <font-awesome-icon icon="fa-brands fa-steam" class="fs-5 me-2"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="price d-flex justify-content-end p-3 align-items-end">
-                    <div class="discount d-flex">
-                        <span class="ms-badge  d-flex justify-content-center align-items-center fs-4">-50%</span>
-                    <span class="ms-badge text-end">
-                        <div><small class="cross">49.99€</small></div>
-                        <div>24.99€</div>
-                    </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="game d-flex">
-            <div class="left">
-                <img src="../../assets/images/game-test.jpg" alt="game-controller">
-            </div>
-            <div class="right d-flex">
-                <div class="info ps-4 pt-2">
-                    <h4 class="mb-2">COUNTER-STRIKE: GLOBAL OFFENSIVE</h4>
-                    <div class="tags mb-2">
-                        <span class="badge bg-secondary ms-badge me-1">Shooting</span>
-                        <span class="badge bg-secondary ms-badge me-1">Multiplayer</span>
-                        <span class="badge bg-secondary ms-badge me-1">Competition</span>
-                        <span class="badge bg-secondary ms-badge me-1">Action</span>
-                        <span class="badge bg-secondary ms-badge me-1">First person</span>
-                    </div>
-                    <div class="extra d-flex">
-                        <span class="me-3">21 AGO 2012</span>
-                        <div class="platform">
-                            <font-awesome-icon icon="fa-brands fa-windows"  class="fs-5 me-2"/>
-                            <font-awesome-icon icon="fa-brands fa-apple" class="fs-5 me-2" />
-                            <font-awesome-icon icon="fa-brands fa-steam" class="fs-5 me-2"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="price d-flex justify-content-end p-3 align-items-end">
-                    <span class="ms-badge  me-1 d-flex justify-content-center align-items-center">Free-to-Play</span>
-                </div>
-            </div>
-        </div>
-        <div class="game d-flex">
-            <div class="left">
-                <img src="../../assets/images/game-test.jpg" alt="game-controller">
-            </div>
-            <div class="right d-flex">
-                <div class="info ps-4 pt-2">
-                    <h4 class="mb-2">COUNTER-STRIKE: GLOBAL OFFENSIVE</h4>
-                    <div class="tags mb-2">
-                        <span class="badge bg-secondary ms-badge me-1">Shooting</span>
-                        <span class="badge bg-secondary ms-badge me-1">Multiplayer</span>
-                        <span class="badge bg-secondary ms-badge me-1">Competition</span>
-                        <span class="badge bg-secondary ms-badge me-1">Action</span>
-                        <span class="badge bg-secondary ms-badge me-1">First person</span>
-                    </div>
-                    <div class="extra d-flex">
-                        <span class="me-3">21 AGO 2012</span>
-                        <div class="platform">
-                            <font-awesome-icon icon="fa-brands fa-windows"  class="fs-5 me-2"/>
-                            <font-awesome-icon icon="fa-brands fa-apple" class="fs-5 me-2" />
-                            <font-awesome-icon icon="fa-brands fa-steam" class="fs-5 me-2"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="price d-flex justify-content-end p-3 align-items-end">
-                    <span class="ms-badge  me-1 d-flex justify-content-center align-items-center">Free-to-Play</span>
-                </div>
-            </div>
-        </div>
-        <div class="game d-flex">
-            <div class="left">
-                <img src="../../assets/images/game-test.jpg" alt="game-controller">
-            </div>
-            <div class="right d-flex">
-                <div class="info ps-4 pt-2">
-                    <h4 class="mb-2">COUNTER-STRIKE: GLOBAL OFFENSIVE</h4>
-                    <div class="tags mb-2">
-                        <span class="badge bg-secondary ms-badge me-1">Shooting</span>
-                        <span class="badge bg-secondary ms-badge me-1">Multiplayer</span>
-                        <span class="badge bg-secondary ms-badge me-1">Competition</span>
-                        <span class="badge bg-secondary ms-badge me-1">Action</span>
-                        <span class="badge bg-secondary ms-badge me-1">First person</span>
-                    </div>
-                    <div class="extra d-flex">
-                        <span class="me-3">21 AGO 2012</span>
-                        <div class="platform">
-                            <font-awesome-icon icon="fa-brands fa-windows"  class="fs-5 me-2"/>
-                            <font-awesome-icon icon="fa-brands fa-apple" class="fs-5 me-2" />
-                            <font-awesome-icon icon="fa-brands fa-steam" class="fs-5 me-2"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="price d-flex justify-content-end p-3 align-items-end">
-                    <span class="ms-badge  me-1 d-flex justify-content-center align-items-center">Free-to-Play</span>
-                </div>
-            </div>
-        </div>
-        <div class="game d-flex">
-            <div class="left">
-                <img src="../../assets/images/game-test.jpg" alt="game-controller">
-            </div>
-            <div class="right d-flex">
-                <div class="info ps-4 pt-2">
-                    <h4 class="mb-2">COUNTER-STRIKE: GLOBAL OFFENSIVE</h4>
-                    <div class="tags mb-2">
-                        <span class="badge bg-secondary ms-badge me-1">Shooting</span>
-                        <span class="badge bg-secondary ms-badge me-1">Multiplayer</span>
-                        <span class="badge bg-secondary ms-badge me-1">Competition</span>
-                        <span class="badge bg-secondary ms-badge me-1">Action</span>
-                        <span class="badge bg-secondary ms-badge me-1">First person</span>
-                    </div>
-                    <div class="extra d-flex">
-                        <span class="me-3">21 AGO 2012</span>
-                        <div class="platform">
-                            <font-awesome-icon icon="fa-brands fa-windows"  class="fs-5 me-2"/>
-                            <font-awesome-icon icon="fa-brands fa-apple" class="fs-5 me-2" />
-                            <font-awesome-icon icon="fa-brands fa-steam" class="fs-5 me-2"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="price d-flex justify-content-end p-3 align-items-end">
-                    <span class="ms-badge  me-1 d-flex justify-content-center align-items-center">Free-to-Play</span>
                 </div>
             </div>
         </div>
@@ -258,18 +125,7 @@ export default {
 
                 .discount {
 
-                    .ms-badge {
-                        padding: 2px 10px;
-                    }
-                    .ms-badge:first-child {
-                        background-color: $discount-bg;
-                        color: $discount-text;
-                    }
-                    .ms-badge:last-child {
-                        
-                        &>div:nth-of-type(1) {
-                            
-                            .cross {
+                    .cross {
                                 position: relative;
                                 display: inline-block;
                             }
@@ -285,8 +141,16 @@ export default {
                                 -webkit-transform: skewY(-10deg);
                                 transform: skewY(-10deg);
                             }
-                        }
+                    .ms-badge {
+                        padding: 2px 10px;
                         
+                    }
+                    .ms-badge:first-child {
+                        background-color: $discount-bg;
+                        color: $discount-text;
+                    }
+                    .ms-badge:last-child {
+                                            
                         &>div:nth-of-type(2) {
                             color: $discount-text;
                         }

@@ -19,6 +19,7 @@ import {faCaretDown} from '@fortawesome/free-solid-svg-icons'
 import {faSquareFacebook} from '@fortawesome/free-brands-svg-icons'
 import {faSquareTumblr} from '@fortawesome/free-brands-svg-icons'
 import {faSteamSymbol} from '@fortawesome/free-brands-svg-icons'
+
 library.add(faUserSecret, winIcon, apple, steam, faDownload, faCaretDown, faSquareFacebook, faSquareTumblr, faSteamSymbol)
 
 createApp(App).component('font-awesome-icon', FontAwesomeIcon).mount('#app')
