@@ -22,13 +22,7 @@ export default {
         console.log(error)
       })
     },
-    showDiscount(price, discount) {
-        const newPrice = (price * discount) / 100;
-        const finalPrice = price - newPrice;
-        return finalPrice.toFixed(2);
-    },
-
-
+    
     gameDate(date) {
 
             const releaseDate = new Date(date);
@@ -119,7 +113,7 @@ export default {
                             <span class="ms-badge  d-flex justify-content-center align-items-center fs-4">-{{ game.discount }}%</span>
                             <span class="ms-badge text-end">
                                 <div><small class="cross">{{ game.price }}</small></div>
-                                <div>{{ showDiscount(game.price, game.discount) }}€</div>
+                                <div>{{ store.showDiscount(game.price, game.discount) }}€</div>
                             </span>
                         </div>
                     </div>
