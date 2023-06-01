@@ -88,7 +88,6 @@ export default {
 
   created() {
     this.getData()
-    this.showDiscount()
   }
 }
 </script>
@@ -97,7 +96,7 @@ export default {
     <div class="games-list">
         <div class="game d-flex" v-for="game in games">
             <div class="left">
-                <img :src="this.store.storage + game.image" alt="game-controller">
+                <img :src="store.storage + game.image" alt="game-controller">
             </div>
             <div class="right d-flex">
                 <div class="info ps-4 pt-2">

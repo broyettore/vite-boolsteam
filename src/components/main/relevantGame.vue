@@ -31,7 +31,6 @@ export default {
 
   created() {
     this.getData()
-    this.showDiscount()
   }
 }
 </script>
@@ -39,7 +38,7 @@ export default {
 <template>
     <div class="d-flex mt-4 ms_bg_blur">
         <div class="position-relative">
-            <img class="m-2" src="../../assets/images/cod.jpg">
+            <img class="m-2" :src="store.storage + games.image">
             <div class="position-absolute top-0 end-0">
                 <font-awesome-icon class="fs-3 ms_star p-1 rounded" :icon="['fas', 'star']" />
             </div>
