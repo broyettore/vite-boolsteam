@@ -12,7 +12,6 @@ export default {
   },
   methods: {
     getData() {
-
       axios.get(this.store.apiBaseUrl + this.store.apiUrls.relevant)
       .then((response) => {
         console.log(response.data.results);
