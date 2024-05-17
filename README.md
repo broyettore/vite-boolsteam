@@ -12,3 +12,5 @@ Seguite il mockup che vi è stato fornito per creare la pagina di front-office d
 Sotto troviamo poi la lista di tutti i giochi inseriti da back-office con – come informazioni base – titolo, data di rilascio, tag di tipologia gioco e prezzo (se 0 => Free-to-play).
 
 * Come detto sopra, in questa sezione potrete aggiungere ulteriori tag/campi relativi ad altre informazioni che avete già previsto o che volete creare (tempo permettendo).
+
+* Link al backend di questo progetto ==> https://github.com/broyettore/boolsteam

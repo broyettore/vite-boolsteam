@@ -22,13 +22,7 @@ export default {
         console.log(error)
       })
     },
-    showDiscount(price, discount) {
-        const newPrice = (price * discount) / 100;
-        const finalPrice = price - newPrice;
-        return finalPrice.toFixed(2);
-    },
-
-
+    
     gameDate(date) {
 
             const releaseDate = new Date(date);
@@ -88,7 +82,6 @@ export default {
 
   created() {
     this.getData()
-    this.showDiscount()
   }
 }
 </script>
@@ -97,7 +90,7 @@ export default {
     <div class="games-list">
         <div class="game d-flex" v-for="game in games">
             <div class="left">
-                <img :src="this.store.storage + game.image" alt="game-controller">
+                <img :src="store.storage + game.image" alt="game-controller">
             </div>
             <div class="right d-flex">
                 <div class="info ps-4 pt-2">
@@ -120,7 +113,7 @@ export default {
                             <span class="ms-badge  d-flex justify-content-center align-items-center fs-4">-{{ game.discount }}%</span>
                             <span class="ms-badge text-end">
                                 <div><small class="cross">{{ game.price }}</small></div>
-                                <div>{{ showDiscount(game.price, game.discount) }}€</div>
+                                <div>{{ store.showDiscount(game.price, game.discount) }}€</div>
                             </span>
                         </div>
                     </div>

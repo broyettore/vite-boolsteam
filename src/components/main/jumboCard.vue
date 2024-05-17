@@ -22,16 +22,10 @@ export default {
         console.log(error)
       })
     },
-    showDiscount(price, discount) {
-        const newPrice = (price * discount) / 100;
-        const finalPrice = price - newPrice;
-        return finalPrice.toFixed(2);
-    }
   },
 
   created() {
     this.getData()
-    this.showDiscount()
   }
 }
 </script>
@@ -47,7 +41,7 @@ export default {
                     <span class="ms_discount fs-3 fw-semibold">-{{ game.discount }}%</span>
                     <span class="ms_price d-flex flex-column">
                         <span class="ms_text_old_price cross">{{ game.price }}€</span>
-                        <span class="ms_text_price">{{ showDiscount(game.price, game.discount) }}€</span>
+                        <span class="ms_text_price">{{ store.showDiscount(game.price, game.discount) }}€</span>
                     </span>
                 </div>
             </div>

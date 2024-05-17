@@ -21,16 +21,11 @@ export default {
         console.log(error)
       })
     },
-    showDiscount(price, discount) {
-        const newPrice = (price * discount) / 100;
-        const finalPrice = price - newPrice;
-        return finalPrice.toFixed(2);
-    }
+
   },
 
   created() {
     this.getData()
-    this.showDiscount()
   }
 }
 </script>
@@ -38,7 +33,7 @@ export default {
 <template>
     <div class="d-flex mt-4 ms_bg_blur">
         <div class="position-relative">
-            <img class="m-2" src="../../assets/images/cod.jpg">
+            <img class="m-2" :src="store.storage + games.image">
             <div class="position-absolute top-0 end-0">
                 <font-awesome-icon class="fs-3 ms_star p-1 rounded" :icon="['fas', 'star']" />
             </div>
@@ -46,7 +41,7 @@ export default {
                 <span class="ms_discount fs-3 fw-semibold">-{{ games.discount }}%</span>
                 <span class="ms_price d-flex flex-column">
                     <span class="ms_text_old_price cross">{{ games.price }}</span>
-                    <span class="ms_text_price">{{ showDiscount(games.price, games.discount) }}€</span>
+                    <span class="ms_text_price">{{ store.showDiscount(games.price, games.discount) }}€</span>
                 </span>
             </div>
         </div>
